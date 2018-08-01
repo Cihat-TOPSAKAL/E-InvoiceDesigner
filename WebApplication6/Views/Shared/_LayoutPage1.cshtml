@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+
+
+<html>
+
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="~/lib/bootstrap-filestyle.min.js"></script>
+    <link rel=stylesheet href="~/doc/docs.css">
+    <script src="~/lib/codemirror.js"></script>
+    <script src="~/mode/xml/xml.js"></script>
+    <script src="~/mode/javascript/javascript.js"></script>
+    <script src="~/mode/css/css.js"></script>
+    <script src="~/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="~/addon/edit/matchbrackets.js"></script>
+    <script src="~/doc/activebookmark.js"></script>
+    <link href="~/lib/codemirror.css" rel="stylesheet" />
+
+    <style>
+
+
+        .block {
+            display: block;
+            margin: 0px 10px;
+            margin-bottom: 1px;
+            
+            padding: 10px;
+        }
+
+        .navbar {
+            margin: 0px;
+            padding: 0px;
+            
+        }
+        
+
+        .wrap {
+            position: relative;
+            height: 87%;
+            padding: 20px;
+            padding-top: 3px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .border {
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            border: 1px solid #999;
+            position: relative;
+            height: 100%;
+            padding: 1px;
+            
+            overflow: hidden;
+        }
+
+
+
+        .CodeMirror {
+            height: 100%;
+            background: white;
+            overflow: hidden;
+
+        }
+
+
+        button {
+            background-color: #222222;
+            border: none;
+            color: #9d9d9d;
+            padding: 14px;
+            font-weight: bold;
+          
+        }
+
+            button:hover {
+                color: white;
+
+            }
+
+        #abc .btn {
+            color: #9d9d9d;
+            padding: 9px;
+            margin-top: 4px;
+
+        }
+
+            #abc .btn:hover {
+                color: white;
+
+            }
+
+        .invoice {
+            overflow: scroll;
+            position: relative;
+            height: 84%;
+            padding: 20px;
+            padding-top: 3px;
+            box-sizing: border-box;
+            border:1px  ;
+            
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+
+    <div id="block" class="block">
+        @Html.Partial("Menu")
+    </div>
+
+    <div class="container-fluid">
+       
+        @RenderBody()
+
+    </div>
+
+  
+    <script>
+        (function () {
+            // Create a CM instance
+            var ed = CodeMirror.fromTextArea(document.getElementById("code"), {
+                lineNumbers: true,
+            });
+
+        })();
+    </script>
+    <script>
+        (function () {
+            // Create a CM instance
+            var ed = CodeMirror.fromTextArea(document.getElementById("code2"), {
+                lineNumbers: true,
+            });
+
+        })();
+    </script>
+
+    <script>
+
+        $(document).ready(function () {
+            $("#Xml").click(function () {
+
+                document.getElementById("wrap1").style.visibility = "visible"
+                document.getElementById("wrap1").style.zIndex = "1"
+                document.getElementById("wrap2").style.visibility = "hidden"
+                document.getElementById("wrap2").style.zIndex = "0"
+
+            });
+            $("#Xslt").click(function () {
+
+                document.getElementById("wrap1").style.visibility = "hidden"
+                document.getElementById("wrap1").style.zIndex = "0"
+                document.getElementById("wrap2").style.visibility = "visible"
+                document.getElementById("wrap2").style.zIndex = "1"
+            });
+
+        });
+
+
+
+    </script>
+    <script>
+        function myFunction() {
+
+            if (document.getElementById("wrap1").style.visibility == "visible") {
+                var ed = CodeMirror.fromTextArea(document.getElementById("code"), {
+                    lineNumbers: true,
+                });
+                ed.setValue("");
+                ed.clearHistory();
+                ed.clearGutter();
+            }
+            else {
+                var ed = CodeMirror.fromTextArea(document.getElementById("code2"), {
+                    lineNumbers: true,
+                });
+                ed.setValue("");
+                ed.clearHistory();
+                ed.clearGutter();
+            }
+        }
+    </script>
+</body>
+</html>

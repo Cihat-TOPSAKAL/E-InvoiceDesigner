@@ -1,0 +1,42 @@
+﻿@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    <div class=wrap id="wrap1" style="width:43%; position:fixed;">
+        <div class=border>
+            <textarea id="code" name="code">@ViewBag.mesaj </textarea>
+        </div>
+    </div>
+
+
+    <div class=wrap id="wrap2" style="width:43%; position:fixed;">
+        <div class=border>
+            <textarea id="code2" name="code2">@ViewBag.mesaj2</textarea>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <button class="btn" style="padding:1px; position:fixed; bottom:1px; left:480px; background-color:azure; " id="Button" type="submit" value="Save">
+                    <span class="glyphicon glyphicon-floppy-disk"></span> Save
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm("SaveFiles", "Home", FormMethod.Post))
+{
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <button class="btn" style=" padding:1px; position:fixed; bottom:1px; left:340px; background-color:azure;" id="Button" type="submit" value="Save Files">
+                    <span class="glyphicon glyphicon-save-file"></span> Download Files
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+}

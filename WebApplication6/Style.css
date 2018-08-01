@@ -1,0 +1,73 @@
+﻿body {
+}
+.block {
+    display: block;
+    margin: 0px 10px;
+    margin-bottom: 1px;
+    border: 2px dashed 2px;
+    padding: 10px;
+}
+
+.navbar {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.wrap {
+    position: relative;
+    height: 87%;
+    padding: 20px;
+    padding-top: 3px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.border {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #999;
+    position: relative;
+    height: 100%;
+    padding: 1px;
+    overflow: hidden;
+}
+
+
+
+.CodeMirror {
+    height: 100%;
+    background: white;
+    overflow: hidden;
+}
+
+
+button {
+    background-color: #222222;
+    border: none;
+    color: #9d9d9d;
+    padding: 14px;
+    font-weight: bold;
+}
+
+    button:hover {
+        color: white;
+    }
+
+#abc .btn {
+    color: #9d9d9d;
+    padding: 9px;
+    margin-top: 3px;
+}
+
+    #abc .btn:hover {
+        color: white;
+    }
+
+.invoice {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-left: 545px;
+    margin-right: 0px;
+}

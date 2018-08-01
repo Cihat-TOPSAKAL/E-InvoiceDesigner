@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href=""  type="text/xsl"?>
+<Ogrenciler>
+<Ogrenci>
+<ad>Ismet</ad>
+<soyad>Safak</soyad>
+<numara>1</numara>
+</Ogrenci>
+<Ogrenci>
+<ad>Ismet2</ad>
+<soyad>Safak2</soyad>
+<numara>2</numara>
+</Ogrenci>
+<Ogrenci>
+<ad>Isme3t</ad>
+<soyad>Safak3</soyad>
+<numara>3</numara>
+</Ogrenci>
+
+</Ogrenciler>

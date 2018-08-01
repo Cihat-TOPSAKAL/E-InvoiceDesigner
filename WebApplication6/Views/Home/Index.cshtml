@@ -1,0 +1,24 @@
+﻿
+@{
+
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-lg-5">
+
+        @Html.Partial("Textarea")
+    </div>
+    <div class="col-lg-6">
+        <div class="invoice" style="width:55%;position:fixed">
+            @Html.Raw(ViewBag.cikti)
+        </div>
+
+    </div>
+</div>
+
+
+
+
+

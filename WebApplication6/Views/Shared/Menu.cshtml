@@ -1,0 +1,29 @@
+﻿<nav class="navbar navbar-inverse">
+    <div class="container-fluid" >
+        <ul class="nav navbar-nav">
+            <li>
+                <button name="Xml" id="Xml" class="navbar-left">Xml</button>
+            </li>
+            <li>
+                <button name="Xslt" id="Xslt" class="navbar-left">Xslt</button>
+            </li>
+            <li>
+                <button name="New" id="New" onclick="myFunction()" type="button" class="navbar-left">New</button>
+            </li>
+            <li id="abc">
+                @using (Html.BeginForm("Upload", "Home", FormMethod.Post,new { enctype = "multipart/form-data" }))
+                {
+                  <input type="file" class="filestyle" onchange="submit()" multiple id="fileUpload"  name="fileUpload" data-classButton="btn btn-primary" data-input="false" data-classIcon="icon-plus" data-buttonText="Your label here." style="color:white;font-weight: bold;">
+                }
+            </li>
+        </ul>
+        <form class="navbar-form navbar-left" name="search">
+            <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search" name="search">
+            </div>
+            <button value="Ara" type="submit" id="ara" class="btn btn-default">Ara</button>
+        </form>
+        <div  style="float:right;margin-right:330px;color:azure;margin-top:15px;color: #9d9d9d;">E-FATURA</div>
+    </div>
+</nav>
+
