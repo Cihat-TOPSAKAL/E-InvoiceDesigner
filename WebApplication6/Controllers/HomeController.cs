@@ -31,58 +31,6 @@ namespace WebApplication6.Controllers
             return View();
         }
 
-        [ValidateInput(false)]
-        [HttpPost]
-        public ActionResult Index(string code, string code2)
-        {
-
-            if (code == "" || code2 == "")
-            {
-                Response.Write("<script lang='JavaScript'>alert('Dosyaları Yüklemeden Kaydetme İşlemi Gerçekleşmez');</script>");
-            }
-            else
-            {
-                //textarealardaki değişikliklerini hafızaya kaydet
-                MemoryStream Xml = new MemoryStream(Encoding.UTF8.GetBytes(code));
-                Xml.Write(System.Text.Encoding.UTF8.GetBytes(code), 0, code.Length);
-                ViewBag.mesaj = code;
-
-
-                MemoryStream Xslt = new MemoryStream(Encoding.UTF8.GetBytes(code2));
-                Xslt.Write(System.Text.Encoding.UTF8.GetBytes(code2), 0, code2.Length);
-                ViewBag.mesaj2 = code2;
-
-                localXmlString = ViewBag.mesaj;
-                localXsltString = ViewBag.mesaj2;
-
-                //saxon He ile transform işlemi yap
-                Processor xsltProcessor = new Processor();
-                DocumentBuilder documentBuilder = xsltProcessor.NewDocumentBuilder();
-                documentBuilder.BaseUri = new Uri("file://");
-                XdmNode xdmNode = documentBuilder.Build(new StringReader(code));
-
-                XsltCompiler xsltCompiler = xsltProcessor.NewXsltCompiler();
-                XsltExecutable xsltExecutable = xsltCompiler.Compile(new StringReader(code2));
-                XsltTransformer xsltTransformer = xsltExecutable.Load();
-                xsltTransformer.InitialContextNode = xdmNode;
-
-                using (StringWriter stringWriter = new StringWriter())
-                {
-                    Serializer serializer = new Serializer();
-                    serializer.SetOutputWriter(stringWriter);
-                    xsltTransformer.Run(serializer);
-                    ViewBag.cikti = stringWriter;
-
-                }
-
-            }
-            
-
-
-            return View();
-        }
-
-
         [HttpPost]
         public ActionResult Upload(IEnumerable<HttpPostedFileBase> fileUpload)
         {
@@ -90,32 +38,25 @@ namespace WebApplication6.Controllers
             {
                 if (Request.Files.Count > 0)
                 {
-
-
                     if (file != null && file.ContentLength > 0)
                     {
                         var fileName = Path.GetFileName(file.FileName);
-
                         var path = Path.Combine(Server.MapPath("~/Files/"), fileName);
-
                         var extension = Path.GetExtension(file.FileName);//dosya uzantısını aldım
-
                         switch (extension) // Uzantıya göre texareaya yönlendirdim
                         {
                             case ".xml":
                                 ViewBag.mesaj = System.IO.File.ReadAllText(path);
-                           
+
                                 localPathXml = path;
                                 break;
                             case ".xslt":
                                 ViewBag.mesaj2 = System.IO.File.ReadAllText(path);
-                                
+
                                 localPathXslt = path;
                                 break;
                         }
-
                         SaveExtension = extension;
-
                     }
                 }
             }
@@ -136,13 +77,10 @@ namespace WebApplication6.Controllers
                 serializer.SetOutputWriter(stringWriter);
                 xsltTransformer.Run(serializer);
                 ViewBag.cikti = stringWriter;
-
             }
 
             return View("Index");
         }
-
-
 
         [HttpPost]
         public ActionResult SaveFiles()
@@ -185,5 +123,60 @@ namespace WebApplication6.Controllers
             }
             return View("Index");
         }
+
+        [HttpPost]
+        public JsonResult AjaxTransform(string code, string code2)
+        {
+            string html = InvoiceTransform(code, code2);
+            return Json(html, JsonRequestBehavior.AllowGet);
+        }
+
+        public string InvoiceTransform(string code, string code2)
+        {
+            string invoiceHtml = String.Empty;
+
+            if (code == "" || code2 == "")
+            {
+                Response.Write("<script lang='JavaScript'>alert('Dosyaları Yüklemeden Kaydetme İşlemi Gerçekleşmez');</script>");
+            }
+            else
+            {
+                //textarealardaki değişikliklerini hafızaya kaydet
+                MemoryStream Xml = new MemoryStream(Encoding.UTF8.GetBytes(code));
+                Xml.Write(System.Text.Encoding.UTF8.GetBytes(code), 0, code.Length);
+                ViewBag.mesaj = code;
+
+
+                MemoryStream Xslt = new MemoryStream(Encoding.UTF8.GetBytes(code2));
+                Xslt.Write(System.Text.Encoding.UTF8.GetBytes(code2), 0, code2.Length);
+                ViewBag.mesaj2 = code2;
+
+                localXmlString = ViewBag.mesaj;
+                localXsltString = ViewBag.mesaj2;
+
+
+                Processor xsltProcessor = new Processor();
+                DocumentBuilder documentBuilder = xsltProcessor.NewDocumentBuilder();
+                documentBuilder.BaseUri = new Uri("file://");
+                XdmNode xdmNode = documentBuilder.Build(new StringReader(code));
+
+                XsltCompiler xsltCompiler = xsltProcessor.NewXsltCompiler();
+                XsltExecutable xsltExecutable = xsltCompiler.Compile(new StringReader(code2));
+                XsltTransformer xsltTransformer = xsltExecutable.Load();
+                xsltTransformer.InitialContextNode = xdmNode;
+
+                using (StringWriter stringWriter = new StringWriter())
+                {
+                    Serializer serializer = new Serializer();
+                    serializer.SetOutputWriter(stringWriter);
+                    xsltTransformer.Run(serializer);
+                    ViewBag.cikti = stringWriter;
+                    invoiceHtml = stringWriter.ToString();
+                }
+            }
+            return invoiceHtml;
+        }
+
     }
 }
+

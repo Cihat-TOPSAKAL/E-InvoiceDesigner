@@ -97,8 +97,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="codemirror.css" />
-    <Content Include="codemirror.js" />
-    <Content Include="default.js" />
     <Content Include="doc\activebookmark.js" />
     <Content Include="doc\docs.css" />
     <Content Include="doc\internals.html" />
@@ -113,11 +111,6 @@
     <Content Include="doc\upgrade_v4.html" />
     <Content Include="doc\yinyang.png" />
     <Content Include="Global.asax" />
-    <Content Include="jquery-3.3.1.min.js" />
-    <Content Include="lib\ab.xml" />
-    <Content Include="lib\bootstrap-filestyle.min.js" />
-    <Content Include="lib\codemirror.css" />
-    <Content Include="lib\codemirror.js" />
     <Content Include="mode\apl\apl.js" />
     <Content Include="mode\apl\index.html" />
     <Content Include="mode\asciiarmor\asciiarmor.js" />
@@ -401,6 +394,11 @@
     <Content Include="mode\yaml\yaml.js" />
     <Content Include="mode\z80\index.html" />
     <Content Include="mode\z80\z80.js" />
+    <Content Include="Scripts\bootstrap-filestyle.min.js" />
+    <Content Include="lib\ab.xml" />
+    <Content Include="lib\bootstrap-filestyle.min.js" />
+    <Content Include="lib\codemirror.css" />
+    <Content Include="lib\codemirror.js" />
     <Content Include="Style.css" />
     <Content Include="Web.config" />
   </ItemGroup>

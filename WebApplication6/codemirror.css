@@ -6,7 +6,6 @@
   height: 300px;
   color: black;
   direction: ltr;
-  
 }
 
 /* PADDING */
@@ -53,7 +52,7 @@
   border-left: 1px solid silver;
 }
 .cm-fat-cursor .CodeMirror-cursor {
-  width: 200px;
+  width: auto;
   border: 0 !important;
   background: #7e7;
 }

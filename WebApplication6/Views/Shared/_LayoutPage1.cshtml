@@ -7,37 +7,32 @@
     <title>@ViewBag.Title</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    @*<link href=" https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.2/codemirror.min.css" rel="stylesheet" />*@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="~/lib/bootstrap-filestyle.min.js"></script>
-    <link rel=stylesheet href="~/doc/docs.css">
-    <script src="~/lib/codemirror.js"></script>
-    <script src="~/mode/xml/xml.js"></script>
-    <script src="~/mode/javascript/javascript.js"></script>
+    <link href="~/doc/docs.css" rel="stylesheet" />
+   
+    <script src="~/Scripts/bootstrap-filestyle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.2/codemirror.min.js"></script>
     <script src="~/mode/css/css.js"></script>
-    <script src="~/mode/htmlmixed/htmlmixed.js"></script>
-    <script src="~/addon/edit/matchbrackets.js"></script>
-    <script src="~/doc/activebookmark.js"></script>
     <link href="~/lib/codemirror.css" rel="stylesheet" />
 
-    <style>
 
+    <style type="text/css">
 
         .block {
             display: block;
             margin: 0px 10px;
             margin-bottom: 1px;
-            
             padding: 10px;
         }
 
         .navbar {
             margin: 0px;
             padding: 0px;
-            
         }
-        
 
         .wrap {
             position: relative;
@@ -56,19 +51,14 @@
             position: relative;
             height: 100%;
             padding: 1px;
-            
             overflow: hidden;
         }
-
-
 
         .CodeMirror {
             height: 100%;
             background: white;
             overflow: hidden;
-
         }
-
 
         button {
             background-color: #222222;
@@ -76,24 +66,20 @@
             color: #9d9d9d;
             padding: 14px;
             font-weight: bold;
-          
         }
 
             button:hover {
                 color: white;
-
             }
 
         #abc .btn {
             color: #9d9d9d;
             padding: 9px;
             margin-top: 4px;
-
         }
 
             #abc .btn:hover {
                 color: white;
-
             }
 
         .invoice {
@@ -103,50 +89,31 @@
             padding: 20px;
             padding-top: 3px;
             box-sizing: border-box;
-            border:1px  ;
-            
+            border: 1px solid;
+            border-radius: 8px;
         }
-
-
     </style>
+
 
 </head>
 <body>
-
 
     <div id="block" class="block">
         @Html.Partial("Menu")
     </div>
 
     <div class="container-fluid">
-       
+
         @RenderBody()
 
     </div>
 
-  
-    <script>
-        (function () {
-            // Create a CM instance
-            var ed = CodeMirror.fromTextArea(document.getElementById("code"), {
-                lineNumbers: true,
-            });
 
-        })();
-    </script>
-    <script>
-        (function () {
-            // Create a CM instance
-            var ed = CodeMirror.fromTextArea(document.getElementById("code2"), {
-                lineNumbers: true,
-            });
-
-        })();
-    </script>
-
-    <script>
-
+    <script type="text/javascript">
+       
         $(document).ready(function () {
+
+
             $("#Xml").click(function () {
 
                 document.getElementById("wrap1").style.visibility = "visible"
@@ -164,8 +131,6 @@
             });
 
         });
-
-
 
     </script>
     <script>
@@ -189,5 +154,7 @@
             }
         }
     </script>
+
+
 </body>
 </html>

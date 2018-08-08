@@ -1,33 +1,35 @@
-﻿@using (Html.BeginForm("Index", "Home", FormMethod.Post))
-{
-    <div class=wrap id="wrap1" style="width:43%; position:fixed;">
-        <div class=border>
-            <textarea id="code" name="code">@ViewBag.mesaj </textarea>
+﻿
+
+<div class=wrap id="wrap1" style="width:43%; position:fixed;">
+    <div class=border>
+        <textarea id="code" name="code">@ViewBag.mesaj </textarea>
+    </div>
+</div>
+
+
+<div class=wrap id="wrap2" style="width:43%; position:fixed;">
+    <div class=border>
+        <textarea id="code2" name="code2">@ViewBag.mesaj2</textarea>
+    </div>
+</div>
+
+@*SAVE*@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <button class="btn" style="padding:1px; position:fixed; bottom:1px; left:480px; background-color:azure;" id="btnSave" type="button" value="Save">
+                <span class="glyphicon glyphicon-floppy-disk"></span> Save
+            </button>
         </div>
     </div>
+</div>
 
 
-    <div class=wrap id="wrap2" style="width:43%; position:fixed;">
-        <div class=border>
-            <textarea id="code2" name="code2">@ViewBag.mesaj2</textarea>
-        </div>
-    </div>
 
-
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4">
-                <button class="btn" style="padding:1px; position:fixed; bottom:1px; left:480px; background-color:azure; " id="Button" type="submit" value="Save">
-                    <span class="glyphicon glyphicon-floppy-disk"></span> Save
-                </button>
-            </div>
-        </div>
-    </div>
-}
-
+@*DOWNLOAD*@
 @using (Html.BeginForm("SaveFiles", "Home", FormMethod.Post))
 {
-    
+
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
@@ -40,3 +42,63 @@
 
 
 }
+
+
+<script type="text/javascript">
+
+    var editorCode;
+    var editorCode2;
+    var content = document.getElementById("code").value;
+    var content2 = document.getElementById("code2").value;
+
+    $(document).ready(function () {
+
+        editorCode = CodeMirror.fromTextArea(document.getElementById("code"), {
+            lineNumbers: true,
+            matchBrackets: true
+        });
+
+        editorCode.on("change", function (cm, change) {
+            content = cm.getValue();
+        });
+
+        //------------------------
+        editorCode2 = CodeMirror.fromTextArea(document.getElementById("code2"), {
+            lineNumbers: true,
+            matchBrackets: true,
+        });
+
+        editorCode2.on("change", function (cm, change) {
+            content2 = cm.getValue();
+        });
+
+
+
+
+        $("#btnSave").on("click", function () {
+
+            $.ajax({
+                url: "/Home/AjaxTransform",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ "code": content, "code2": content2 }),
+                success: function (data) {
+                    console.log(data);
+                    if (data) {
+                        $('#invoice').fadeOut('fast', function () {
+                            $(this).html(data);
+                        }).fadeIn();
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        });
+
+    });
+
+
+
+</script>
+
